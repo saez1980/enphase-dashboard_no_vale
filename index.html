@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Enphase Energy Dashboard 3.0</title><script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+:root{--nav:#102a43;--blue:#2f6690;--bg:#f4f7fb;--card:#fff;--text:#17324d;--muted:#718096;--line:#e5edf4}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif}
+.top{background:linear-gradient(135deg,#102a43,#2f6690);color:white;padding:27px 32px}.topin,.wrap{max-width:1400px;margin:auto}.topin{display:flex;justify-content:space-between;align-items:center}.brand{font-size:26px;font-weight:850}.sub{font-size:13px;opacity:.82;margin-top:5px}
+.status{font-size:12px;background:#ffffff18;border:1px solid #ffffff30;padding:8px 11px;border-radius:10px}
+.wrap{padding:22px}.toolbar,.card,.panel{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:0 7px 24px #17324d0d}
+.toolbar{padding:16px;display:flex;gap:14px;align-items:end;flex-wrap:wrap;margin-bottom:18px}.field label{display:block;font-size:10px;font-weight:800;text-transform:uppercase;color:var(--muted);margin-bottom:6px}.field select,.btn{padding:10px 12px;border:1px solid #d5e0ea;border-radius:9px;background:#fff;color:var(--text);font-weight:650}.btn{cursor:pointer}
+.grid{display:grid;grid-template-columns:repeat(6,1fr);gap:13px;margin-bottom:18px}.card{padding:17px}.label{font-size:10px;color:var(--muted);font-weight:800;text-transform:uppercase}.value{font-size:24px;font-weight:850;margin-top:7px}.delta{font-size:11px;margin-top:7px;color:var(--muted)}
+.main{display:grid;grid-template-columns:2fr 1fr;gap:18px}.panel{padding:19px;margin-bottom:18px}.panel h2{font-size:16px;margin:0 0 5px}.panel p{font-size:12px;color:var(--muted);margin:0 0 12px}.canvas{height:310px}
+.ins{border-radius:12px;padding:14px;background:#f7fafc;border:1px solid var(--line);font-size:13px;line-height:1.4;margin-bottom:10px}.ins b{display:block;margin-bottom:4px}
+table{width:100%;border-collapse:collapse;font-size:12px}th,td{padding:9px;border-bottom:1px solid var(--line);text-align:right}th:first-child,td:first-child{text-align:left}th{color:var(--muted);font-size:10px;text-transform:uppercase}
+.footer{color:var(--muted);font-size:11px;padding:2px 0 20px}.error{padding:18px;background:#fff5f5;border:1px solid #fed7d7;border-radius:12px;color:#9b2c2c;margin-bottom:18px}
+@media(max-width:1100px){.grid{grid-template-columns:repeat(3,1fr)}.main{grid-template-columns:1fr}}@media(max-width:650px){.top{padding:20px}.topin{display:block}.status{display:inline-block;margin-top:12px}.wrap{padding:12px}.grid{grid-template-columns:repeat(2,1fr)}.canvas{height:270px}}
+</style></head>
+<body>
+<header class="top"><div class="topin"><div><div class="brand">☀️ Enphase Energy Dashboard</div><div class="sub">Dashboard 3.0 · datos separados del diseño</div></div><div class="status" id="status">Cargando datos…</div></div></header>
+<main class="wrap"><div id="error"></div>
+<section class="toolbar"><div class="field"><label>Año</label><select id="year"><option value="Todos">Todos</option></select></div><div class="field"><label>Mes</label><select id="month"><option value="Todos">Todos</option></select></div><button class="btn" id="reset">↻ Limpiar</button></section>
+<section class="grid">
+<div class="card"><div class="label">Producción</div><div class="value" id="prod">—</div></div>
+<div class="card"><div class="label">Consumo</div><div class="value" id="cons">—</div></div>
+<div class="card"><div class="label">Red importada</div><div class="value" id="imp">—</div></div>
+<div class="card"><div class="label">Red exportada</div><div class="value" id="exp">—</div></div>
+<div class="card"><div class="label">Autoconsumo</div><div class="value" id="auto">—</div><div class="delta" id="state"></div></div>
+<div class="card"><div class="label">Independencia</div><div class="value" id="ind">—</div></div>
+</section>
+<div class="main"><div>
+<section class="panel"><h2>Producción vs. consumo</h2><p>Evolución mensual.</p><div class="canvas"><canvas id="trend"></canvas></div></section>
+<section class="panel"><h2>Red eléctrica</h2><p>Importación y exportación.</p><div class="canvas"><canvas id="grid"></canvas></div></section>
+</div><div>
+<section class="panel"><h2>Distribución energética</h2><p>Composición del período.</p><div class="canvas"><canvas id="mix"></canvas></div></section>
+<section class="panel"><h2>Lecturas destacadas</h2>
+<div class="ins"><b>🏆 Mejor producción</b><span id="bestP">—</span></div>
+<div class="ins"><b>🔋 Mejor autoconsumo</b><span id="bestA">—</span></div>
+<div class="ins"><b>⚡ Mayor consumo</b><span id="bestC">—</span></div>
+</section></div></div>
+<section class="panel"><h2>Detalle mensual</h2><div style="overflow:auto"><table><thead><tr><th>Periodo</th><th>Producción</th><th>Consumo</th><th>Importada</th><th>Exportada</th><th>Autoconsumo</th></tr></thead><tbody id="table"></tbody></table></div></section>
+<div class="footer">Fuente: Enphase_con_IA.xlsx · El dashboard lee automáticamente <b>data/data.json</b>. Última carga: <span id="loaded">—</span></div>
+</main>
+<script>
+let DATA=[],c1,c2,c3;const nf=new Intl.NumberFormat("es-ES",{maximumFractionDigits:1}), months=["","Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+const fmt=n=>nf.format(n)+" kWh",avg=(a,k)=>a.length?a.reduce((s,r)=>s+r[k],0)/a.length:0;
+async function load(){try{let r=await fetch("data/data.json?"+Date.now());if(!r.ok)throw Error();DATA=await r.json();document.querySelector("#status").textContent="● Datos cargados · "+DATA.length+" registros";document.querySelector("#loaded").textContent=new Date().toLocaleString("es-ES");setup();update()}catch(e){document.querySelector("#status").textContent="⚠ Error";document.querySelector("#error").innerHTML='<div class="error"><b>No se pudieron cargar los datos.</b> Si abres el HTML directamente desde tu ordenador, publícalo en GitHub Pages, Netlify o Vercel para que funcione correctamente.</div>'}}
+function setup(){[...new Set(DATA.map(x=>x.año))].sort().forEach(y=>document.querySelector("#year").insertAdjacentHTML("beforeend",`<option>${y}</option>`));for(let i=1;i<=12;i++)document.querySelector("#month").insertAdjacentHTML("beforeend",`<option value="${i}">${months[i]}</option>`)}
+function update(){let y=year.value,m=month.value,f=DATA.filter(r=>(y=="Todos"||r.año==y)&&(m=="Todos"||r.mes==m)).sort((a,b)=>a.periodo.localeCompare(b.periodo));let prod=f.reduce((s,r)=>s+r.produccion,0),cons=f.reduce((s,r)=>s+r.consumo,0),imp=f.reduce((s,r)=>s+r.importada,0),exp=f.reduce((s,r)=>s+r.exportada,0),aut=avg(f,"autoconsumo"),ind=cons?(cons-imp)/cons*100:0;
+document.querySelector("#prod").textContent=fmt(prod);document.querySelector("#cons").textContent=fmt(cons);document.querySelector("#imp").textContent=fmt(imp);document.querySelector("#exp").textContent=fmt(exp);document.querySelector("#auto").textContent=nf.format(aut)+" %";document.querySelector("#ind").textContent=nf.format(ind)+" %";document.querySelector("#state").textContent=aut>=70?"Excelente":aut>=40?"Nivel intermedio":"Revisar";
+let bp=f.reduce((a,b)=>b.produccion>a.produccion?b:a,null),ba=f.reduce((a,b)=>b.autoconsumo>a.autoconsumo?b:a,null),bc=f.reduce((a,b)=>b.consumo>a.consumo?b:a,null);
+bestP.textContent=bp?bp.periodo+" · "+fmt(bp.produccion):"—";bestA.textContent=ba?ba.periodo+" · "+nf.format(ba.autoconsumo)+" %":"—";bestC.textContent=bc?bc.periodo+" · "+fmt(bc.consumo):"—";
+table.innerHTML=f.map(r=>`<tr><td>${r.periodo}</td><td>${fmt(r.produccion)}</td><td>${fmt(r.consumo)}</td><td>${fmt(r.importada)}</td><td>${fmt(r.exportada)}</td><td>${nf.format(r.autoconsumo)} %</td></tr>`).join("");
+[c1,c2,c3].forEach(x=>x&&x.destroy());let labels=f.map(r=>r.periodo);
+c1=new Chart(trend,{type:"line",data:{labels,datasets:[{label:"Producción",data:f.map(r=>r.produccion),tension:.25},{label:"Consumo",data:f.map(r=>r.consumo),tension:.25}]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:"index",intersect:false},plugins:{legend:{position:"bottom"}}}});
+c2=new Chart(grid,{type:"bar",data:{labels,datasets:[{label:"Importada",data:f.map(r=>r.importada)},{label:"Exportada",data:f.map(r=>r.exportada)}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:"bottom"}}}});
+c3=new Chart(mix,{type:"doughnut",data:{labels:["Solar consumida","Importada","Exportada"],datasets:[{data:[Math.max(cons-imp,0),imp,exp]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:"bottom"}}}})}
+year.onchange=update;month.onchange=update;reset.onclick=()=>{year.value="Todos";month.value="Todos";update()};load();
+</script></body></html>

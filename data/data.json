@@ -1,0 +1,322 @@
+[
+  {
+    "periodo": "2023-12",
+    "año": 2023,
+    "mes": 12,
+    "produccion": 214.7,
+    "consumo": 116.6,
+    "importada": 81.5,
+    "exportada": 179.5,
+    "autoconsumo": 30.1
+  },
+  {
+    "periodo": "2024-01",
+    "año": 2024,
+    "mes": 1,
+    "produccion": 272.3,
+    "consumo": 192.5,
+    "importada": 137.7,
+    "exportada": 217.5,
+    "autoconsumo": 28.5
+  },
+  {
+    "periodo": "2024-02",
+    "año": 2024,
+    "mes": 2,
+    "produccion": 321.2,
+    "consumo": 163.4,
+    "importada": 101.0,
+    "exportada": 258.8,
+    "autoconsumo": 38.2
+  },
+  {
+    "periodo": "2024-03",
+    "año": 2024,
+    "mes": 3,
+    "produccion": 319.1,
+    "consumo": 155.6,
+    "importada": 84.0,
+    "exportada": 247.4,
+    "autoconsumo": 46.0
+  },
+  {
+    "periodo": "2024-04",
+    "año": 2024,
+    "mes": 4,
+    "produccion": 473.9,
+    "consumo": 124.5,
+    "importada": 57.9,
+    "exportada": 407.2,
+    "autoconsumo": 53.5
+  },
+  {
+    "periodo": "2024-05",
+    "año": 2024,
+    "mes": 5,
+    "produccion": 542.4,
+    "consumo": 124.1,
+    "importada": 54.9,
+    "exportada": 473.1,
+    "autoconsumo": 55.8
+  },
+  {
+    "periodo": "2024-06",
+    "año": 2024,
+    "mes": 6,
+    "produccion": 454.6,
+    "consumo": 108.6,
+    "importada": 48.3,
+    "exportada": 394.3,
+    "autoconsumo": 55.5
+  },
+  {
+    "periodo": "2024-07",
+    "año": 2024,
+    "mes": 7,
+    "produccion": 518.1,
+    "consumo": 166.8,
+    "importada": 73.4,
+    "exportada": 424.7,
+    "autoconsumo": 56.0
+  },
+  {
+    "periodo": "2024-08",
+    "año": 2024,
+    "mes": 8,
+    "produccion": 506.9,
+    "consumo": 70.6,
+    "importada": 32.8,
+    "exportada": 469.1,
+    "autoconsumo": 53.5
+  },
+  {
+    "periodo": "2024-09",
+    "año": 2024,
+    "mes": 9,
+    "produccion": 428.2,
+    "consumo": 146.4,
+    "importada": 67.1,
+    "exportada": 348.8,
+    "autoconsumo": 54.2
+  },
+  {
+    "periodo": "2024-10",
+    "año": 2024,
+    "mes": 10,
+    "produccion": 283.4,
+    "consumo": 139.2,
+    "importada": 79.4,
+    "exportada": 223.6,
+    "autoconsumo": 43.0
+  },
+  {
+    "periodo": "2024-11",
+    "año": 2024,
+    "mes": 11,
+    "produccion": 263.8,
+    "consumo": 141.3,
+    "importada": 88.9,
+    "exportada": 211.4,
+    "autoconsumo": 37.1
+  },
+  {
+    "periodo": "2024-12",
+    "año": 2024,
+    "mes": 12,
+    "produccion": 277.7,
+    "consumo": 170.1,
+    "importada": 111.6,
+    "exportada": 219.2,
+    "autoconsumo": 34.4
+  },
+  {
+    "periodo": "2025-01",
+    "año": 2025,
+    "mes": 1,
+    "produccion": 249.9,
+    "consumo": 199.4,
+    "importada": 124.0,
+    "exportada": 174.4,
+    "autoconsumo": 37.8
+  },
+  {
+    "periodo": "2025-02",
+    "año": 2025,
+    "mes": 2,
+    "produccion": 299.3,
+    "consumo": 166.5,
+    "importada": 96.2,
+    "exportada": 229.0,
+    "autoconsumo": 42.2
+  },
+  {
+    "periodo": "2025-03",
+    "año": 2025,
+    "mes": 3,
+    "produccion": 338.4,
+    "consumo": 179.6,
+    "importada": 107.4,
+    "exportada": 266.1,
+    "autoconsumo": 40.2
+  },
+  {
+    "periodo": "2025-04",
+    "año": 2025,
+    "mes": 4,
+    "produccion": 402.9,
+    "consumo": 121.2,
+    "importada": 61.8,
+    "exportada": 343.5,
+    "autoconsumo": 49.0
+  },
+  {
+    "periodo": "2025-05",
+    "año": 2025,
+    "mes": 5,
+    "produccion": 475.4,
+    "consumo": 172.2,
+    "importada": 70.7,
+    "exportada": 373.9,
+    "autoconsumo": 58.9
+  },
+  {
+    "periodo": "2025-06",
+    "año": 2025,
+    "mes": 6,
+    "produccion": 448.8,
+    "consumo": 200.7,
+    "importada": 99.7,
+    "exportada": 347.7,
+    "autoconsumo": 50.3
+  },
+  {
+    "periodo": "2025-07",
+    "año": 2025,
+    "mes": 7,
+    "produccion": 493.0,
+    "consumo": 230.9,
+    "importada": 107.0,
+    "exportada": 369.0,
+    "autoconsumo": 53.7
+  },
+  {
+    "periodo": "2025-08",
+    "año": 2025,
+    "mes": 8,
+    "produccion": 466.9,
+    "consumo": 161.8,
+    "importada": 78.5,
+    "exportada": 383.5,
+    "autoconsumo": 51.5
+  },
+  {
+    "periodo": "2025-09",
+    "año": 2025,
+    "mes": 9,
+    "produccion": 413.3,
+    "consumo": 143.4,
+    "importada": 72.5,
+    "exportada": 342.3,
+    "autoconsumo": 49.4
+  },
+  {
+    "periodo": "2025-10",
+    "año": 2025,
+    "mes": 10,
+    "produccion": 349.0,
+    "consumo": 137.3,
+    "importada": 80.0,
+    "exportada": 291.8,
+    "autoconsumo": 41.7
+  },
+  {
+    "periodo": "2025-11",
+    "año": 2025,
+    "mes": 11,
+    "produccion": 285.7,
+    "consumo": 133.3,
+    "importada": 84.9,
+    "exportada": 237.2,
+    "autoconsumo": 36.3
+  },
+  {
+    "periodo": "2025-12",
+    "año": 2025,
+    "mes": 12,
+    "produccion": 193.5,
+    "consumo": 122.3,
+    "importada": 85.1,
+    "exportada": 156.3,
+    "autoconsumo": 30.4
+  },
+  {
+    "periodo": "2026-01",
+    "año": 2026,
+    "mes": 1,
+    "produccion": 189.7,
+    "consumo": 208.7,
+    "importada": 147.3,
+    "exportada": 128.3,
+    "autoconsumo": 29.4
+  },
+  {
+    "periodo": "2026-02",
+    "año": 2026,
+    "mes": 2,
+    "produccion": 259.8,
+    "consumo": 173.7,
+    "importada": 116.7,
+    "exportada": 202.8,
+    "autoconsumo": 32.8
+  },
+  {
+    "periodo": "2026-03",
+    "año": 2026,
+    "mes": 3,
+    "produccion": 389.4,
+    "consumo": 186.0,
+    "importada": 99.5,
+    "exportada": 302.8,
+    "autoconsumo": 46.5
+  },
+  {
+    "periodo": "2026-04",
+    "año": 2026,
+    "mes": 4,
+    "produccion": 400.6,
+    "consumo": 133.4,
+    "importada": 69.5,
+    "exportada": 336.7,
+    "autoconsumo": 47.9
+  },
+  {
+    "periodo": "2026-05",
+    "año": 2026,
+    "mes": 5,
+    "produccion": 470.7,
+    "consumo": 174.6,
+    "importada": 79.8,
+    "exportada": 376.0,
+    "autoconsumo": 54.3
+  },
+  {
+    "periodo": "2026-06",
+    "año": 2026,
+    "mes": 6,
+    "produccion": 449.5,
+    "consumo": 217.0,
+    "importada": 98.8,
+    "exportada": 331.3,
+    "autoconsumo": 54.5
+  },
+  {
+    "periodo": "2026-07",
+    "año": 2026,
+    "mes": 7,
+    "produccion": 439.9,
+    "consumo": 184.2,
+    "importada": 89.1,
+    "exportada": 344.7,
+    "autoconsumo": 51.6
+  }
+]
